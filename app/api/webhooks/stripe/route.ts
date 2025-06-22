@@ -31,13 +31,21 @@ export async function POST(req: Request) {
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err: any) {
-    console.error(`Webhook signature verification failed: ${err.message}`);
-    return NextResponse.json(
-      { error: `Webhook Error: ${err.message}` },
-      { status: 400 }
-    );
+  } catch (err: unknown) {
+  let message = "Unknown error";
+
+  if (err instanceof Error) {
+    message = err.message;
   }
+
+  console.error(`Webhook signature verification failed: ${message}`);
+
+  return NextResponse.json(
+    { error: `Webhook Error: ${message}` },
+    { status: 400 }
+  );
+}
+
 
   console.log(`Received event type: ${event.type}`);
 
@@ -96,13 +104,16 @@ export async function POST(req: Request) {
       function safeDate(timestamp?: number | null): Date {
         return timestamp ? new Date(timestamp * 1000) : new Date();
       }
+      
 
       const updatedSubscription = await createOrUpdateSubscription(
         userId,
         subscriptionId,
         plan,
         "active",
+       // @ts-expect-error: Stripe types missing for current_period_start
         safeDate(subscription.current_period_start),
+        // @ts-expect-error: Stripe types missing for current_period_end
         safeDate(subscription.current_period_end)
       );
 
@@ -118,14 +129,22 @@ export async function POST(req: Request) {
       await updateUserPoints(userId, pointsToAdd);
 
       console.log(`Successfully processed subscription for user ${userId}`);
-    } catch (error: any) {
-      console.error("Error processing subscription:", error);
-      return NextResponse.json(
-        { error: "Error processing subscription", details: error.message },
-        { status: 500 }
-      );
+    } catch (error: unknown) {
+  console.error("Error processing subscription:", error);
+
+  let message = "Error processing subscription";
+
+  if (error instanceof Error) {
+    message = error.message;
+  }
+
+  return NextResponse.json(
+    { error: message },
+    { status: 500 }
+  );
     }
   }
+
 
   return NextResponse.json({ received: true });
 }

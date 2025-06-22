@@ -1,7 +1,7 @@
  
 import  Navbar  from "@/components/Navbar";
 import Link from "next/link";
-import { CheckCircleIcon, SparklesIcon, ZapIcon, UserIcon, StarIcon } from "lucide-react";
+import {  StarIcon } from "lucide-react";
 
  
  

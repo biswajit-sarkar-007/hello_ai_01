@@ -6,16 +6,16 @@ import {
   SignOutButton,
   UserButton,
   SignedOut,
-  SignedIn,
-  useAuth,
+  SignedIn
+  
 } from "@clerk/nextjs";
-import { useState, useEffect } from "react";
-import { Menu, X, Zap } from "lucide-react";
+import { useState } from "react";
+ 
 
 
 
 export default function Navbar() {
-  const { userId } = useAuth();
+   
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navLinks = [
