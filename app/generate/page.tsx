@@ -263,7 +263,7 @@
 //       case "instagram":
 //         return <InstagramMock content={generatedContent[0]} />;
 //       case "linkedin":
-//         return <LinkedInMock content={generatedContent[0]} />;
+//         return <LinkedInMock content={typeof generatedContent[0] === 'string' ? generatedContent[0] : ''} userName={user?.fullName || user?.username || 'LinkedInUser'} userTitle={user?.publicMetadata?.title || 'Your Title'} />;
 //       default:
 //         return null;
 //     }
@@ -787,9 +787,9 @@ export default function GenerateContent() {
       case "twitter":
         return <TwitterMock content={generatedContent} />;
       case "instagram":
-        return <InstagramMock content={generatedContent[0]} />;
+        return <InstagramMock content={generatedContent[0]} userName={user?.fullName || user?.username || "InstagramUser"} uploadedImageUrl={image ? URL.createObjectURL(image) : undefined} />;
       case "linkedin":
-        return <LinkedInMock content={generatedContent[0]} />;
+        return <LinkedInMock content={typeof generatedContent[0] === 'string' ? generatedContent[0] : ''} userName={user?.fullName || user?.username || 'LinkedInUser'} userTitle={ 'Your Title'} />;
       default:
         return null;
     }
@@ -804,7 +804,7 @@ export default function GenerateContent() {
       <div className="flex items-center justify-center min-h-screen bg-[#0a0a0a]">
         <div className="text-center bg-[#111111] p-8 rounded-lg shadow-lg">
           <h1 className="text-3xl font-bold text-white mb-4">
-            Welcome to ThreadCraft AI
+            Welcome to  Hello AI and the Open Source Conteng Generated App
           </h1>
           <p className="text-gray-400 mb-6">
             To start generating amazing content, please sign in or create an
@@ -1000,6 +1000,8 @@ export default function GenerateContent() {
               </Button>
             </section>
 
+
+
             {/* Generated content display */}
             {(selectedHistoryItem || generatedContent.length > 0) && (
               <section className="bg-white/90 border border-indigo-100 shadow-lg rounded-2xl px-4 py-6 sm:px-8 sm:py-8 space-y-3 sm:space-y-4">
@@ -1014,12 +1016,12 @@ export default function GenerateContent() {
                     ).map((tweet, index) => (
                       <div
                         key={index}
-                        className="bg-indigo-50 border border-indigo-100 p-4 rounded-xl relative shadow-sm"
+                        className="bg-indigo-50 border  border-indigo-100 p-4 rounded-xl relative shadow-sm"
                       >
                         <ReactMarkdown
                           components={{
                             p: ({...props }) => (
-                              <p className="prose max-w-none mb-2 text-sm text-gray-800" {...props} />
+                              <p className="prose max-w-none mb-2 text-sm text-gray-800 gap-4" {...props} />
                             ),
                           }}
                         >
@@ -1045,7 +1047,7 @@ export default function GenerateContent() {
                     <ReactMarkdown
                       components={{
                         p: ({...props }) => (
-                          <p className="prose max-w-none text-sm text-gray-800" {...props} />
+                          <p className="prose max-w-none text-sm text-gray-800 gap-4 break-words" {...props} />
                         ),
                       }}
                     >
@@ -1059,7 +1061,7 @@ export default function GenerateContent() {
             {/* Content preview */}
             {generatedContent.length > 0 && (
               <section className="bg-white/90 border border-indigo-100 shadow-lg rounded-2xl px-4 py-6 sm:px-8 sm:py-8">
-                <h2 className="text-xl font-bold mb-4 text-indigo-600">
+                <h2 className="text-xl font-bold mb-4 text-indigo-600 break-words">
                   Preview
                 </h2>
                 {renderContentMock()}
