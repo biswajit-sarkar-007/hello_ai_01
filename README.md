@@ -1,4 +1,4 @@
-#  Hello AI (Content Generator)
+ #  Hello AI (Content Generator)
 
 An AI-powered content generation web app built with **Next.js** — allowing users to generate social media content (Twitter Threads, Instagram Captions, LinkedIn Posts), manage history, and handle authentication, payments, and email notifications.
 
