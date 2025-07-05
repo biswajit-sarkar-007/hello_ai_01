@@ -91,7 +91,7 @@ The project is deployed on Vercel, with the following services connected:
 Pull requests are welcome!
 For major changes, please open an issue first to discuss what you would like to change.
 
-Author: 
+Made By :   
 Biswajit Sarkar
 
 
