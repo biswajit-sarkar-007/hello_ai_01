@@ -8,7 +8,7 @@ import {  StarIcon } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Alex P.",
+    name: "Alex Pul",
     role: "Content Strategist",
     text: "Hello AI has completely transformed my workflow. The content quality is outstanding and the interface is a joy to use!"
   },
