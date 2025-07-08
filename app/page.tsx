@@ -137,6 +137,7 @@ export default function Home() {
       <footer className="w-full border-t border-gray-200 py-6 sm:py-8 bg-white fade-in">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center px-4 gap-4">
           <div className="text-gray-500 text-sm">© {new Date().getFullYear()} Hello AI. All rights reserved.</div>
+          <a className="text-blue-700" href="https://github.com/biswajit-sarkar-007"> Created By Biswajit Sarkar</a>
           <div className="flex gap-6 text-gray-400 text-sm">
             <Link href="/features" className="hover:text-gray-900 transition">Features</Link>
             <Link href="/pricing" className="hover:text-gray-900 transition">Pricing</Link>
